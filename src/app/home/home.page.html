@@ -1,20 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="">
+    <ion-title>Buscar GitHub</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      placeholder="Digite o usuário do GitHub"
+      [(ngModel)]="username" 
+      (keyup.enter)="buscar()"
+      >
+    </ion-input>
+    <ion-button expand="block" (click)="buscar()">Buscar</ion-button>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  @if (user) {
+    <ion-card appHighlight (click)="verDetalhes(user.login)">
+      <img [src]="user.avatar_url" alt="Avatar">
+      <ion-card-header>
+        <ion-card-title>{{ user.name }}</ion-card-title>
+        <ion-card-subtitle>@{{ user.login }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ user.bio }}</p>
+        <p><strong>Seguidores:</strong> {{ user.followers | formatNumber }}</p>
+        <p><strong>Repositórios públicos:</strong> {{ user.public_repos | formatNumber }}</p>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <ion-list *ngIf="repos.length">
+    <ion-list-header>
+      <ion-label>Repositórios</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let repo of repos">
+      <ion-label>
+        <h2>{{ repo.name }}</h2>
+        <p>{{ repo.description }}</p>
+      </ion-label>
+      <ion-button fill="clear" [href]="repo.html_url" target="_blank">
+        Ver
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
