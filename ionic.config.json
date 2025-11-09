@@ -1,0 +1,7 @@
+{
+  "name": "projetoBuscar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
