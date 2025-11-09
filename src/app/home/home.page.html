@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
+  <ion-item> 
     <ion-input
       placeholder="Digite o usuário do GitHub"
       [(ngModel)]="username" 
@@ -24,7 +24,7 @@
       </ion-card-header>
       <ion-card-content>
         <p>{{ user.bio }}</p>
-        <p><strong>Seguidores:</strong> {{ user.followers | formatNumber }}</p>
+        <p><strong>Todos Seguidores:</strong> {{ user.followers | formatNumber }}</p>
         <p><strong>Repositórios públicos:</strong> {{ user.public_repos | formatNumber }}</p>
       </ion-card-content>
     </ion-card>
