@@ -3,44 +3,96 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalhes do Usuário</ion-title>
+    <div part="background">
+      <div
+        part="content"
+        style="display: flex; flex-direction: row; padding-left: 14px"
+      >
+        <img
+          src="../../assets/github-142-svgrepo-com.png"
+          alt=""
+          style="width: 40px"
+        />
+        <ion-title style="color: white">Detalhes de Usuário</ion-title>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="container">
   @if (userDetails) {
-    <ion-card>
-      <img [src]="userDetails.avatar_url" alt="Avatar" appHighlight>
-      <ion-card-header>
-        <ion-card-title>{{ userDetails.name }}</ion-card-title>
-        <ion-card-subtitle>@{{ userDetails.login }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ userDetails.bio }}</p>
-        <p><strong>Seguidores:</strong> {{ userDetails.followers | formatNumber }}</p>
-        <p><strong>Seguindo:</strong> {{ userDetails.following | formatNumber }}</p>
-        <p><strong>Repositórios públicos:</strong> {{ userDetails.public_repos }}</p>
-        <p><strong>Localização:</strong> {{ userDetails.location || 'Não informada' }}</p>
-      </ion-card-content>
-    </ion-card>
+  <ion-card class="card" appHighlight>
+    <div style="display: flex; align-items: center; justify-content: center">
+      <img
+        [src]="userDetails.avatar_url"
+        alt="Avatar"
+        style="
+          border-radius: 10px;
+          width: 350px;
+          height: 350px;
+          border: 1.5px solid #86b6f0;
+        "
+      />
+    </div>
+    <ion-card-header>
+      <ion-card-title class="titleCard">{{ userDetails.name }}</ion-card-title>
+      <ion-card-subtitle class="text"
+        >@{{ userDetails.login }}</ion-card-subtitle
+      >
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text">{{ userDetails.bio }}</p>
+      <p>
+        <strong class="text">Seguidores:</strong> {{ userDetails.followers |
+        formatNumber }}
+      </p>
+      <p>
+        <strong class="text">Seguindo:</strong> {{ userDetails.following |
+        formatNumber }}
+      </p>
+      <p>
+        <strong class="text">Repositórios públicos:</strong> {{
+        userDetails.public_repos }}
+      </p>
+      <p>
+        <strong class="text">Localização:</strong> {{ userDetails.location ||
+        'Não informada' }}
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-list>
-      <ion-list-header>
-        <ion-label>Repositórios</ion-label>
-      </ion-list-header>
+  <ion-list style="margin-top: 20px" class="cardList">
+    <ion-list-header>
+      <ion-label
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 24px;
+          color: white;
+          text-decoration: underline;
+          padding-bottom: 20px;
+        "
+        >Repositórios</ion-label
+      >
+    </ion-list-header>
 
-      @for (repo of repositories; track repo.id) {
-        <ion-item>
-          <ion-label>
-            <h2>{{ repo.name }}</h2>
-            <p>{{ repo.description || 'Sem descrição' }}</p>
-            <p>⭐ {{ repo.stargazers_count | formatNumber }}</p>
-          </ion-label>
-          <ion-button fill="clear" [href]="repo.html_url" target="_blank">
-            Ver
-          </ion-button>
-        </ion-item>
-      }
-    </ion-list>
+    @for (repo of repositories; track repo.id) {
+    <ion-item repoHighlight style="margin-bottom: 10px" class="repo-item">
+      <ion-label>
+        <h2 style>{{ repo.name }}</h2>
+        <p>{{ repo.description || 'Sem descrição' }}</p>
+        <p>⭐ {{ repo.stargazers_count | formatNumber }}</p>
+      </ion-label>
+      <ion-button fill="clear" [href]="repo.html_url" target="_blank">
+        <img
+          src="../../assets/send-svgrepo-com.png"
+          alt="Send"
+          style="width: 30px; height: 30px"
+        />
+      </ion-button>
+    </ion-item>
+    }
+  </ion-list>
   }
 </ion-content>

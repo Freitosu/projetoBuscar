@@ -1,6 +1,6 @@
 ion-card {
   margin: 16px;
-  
+
   img {
     width: 100%;
     max-height: 300px;
@@ -12,4 +12,82 @@ ion-card-content {
   p {
     margin: 8px 0;
   }
+}
+
+// #010409  --Header
+
+// #0d1117 - Background
+
+// #010409 - Card
+
+.container {
+  --background: #0d1117;
+}
+
+.content {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+ion-toolbar::part(background) {
+  background-color: #010409;
+}
+
+ion-toolbar::part(content) {
+  color: #f0f6fc;
+}
+
+.card {
+  background-color: #213042;
+  width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  margin-top: 40px;
+}
+
+.cardList {
+  background-color: #213042;
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.titleCard {
+  color: white;
+}
+
+.titleCard:hover {
+  text-decoration: underline;
+}
+
+.text {
+  color: rgb(207, 207, 207);
+}
+
+.repo-item {
+  --background: #7cb1f3;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.repo-item:hover {
+  --background: rgb(64, 97, 136);
+}
+
+.repo-item ion-label h2 {
+  color: white;
+}
+
+.repo-item ion-label p {
+  color: white;
+}
+
+.repo-item:hover ion-label h2 {
+  text-decoration: underline;
 }

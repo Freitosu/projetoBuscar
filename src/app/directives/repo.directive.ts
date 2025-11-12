@@ -1,24 +1,23 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]',
+  selector: '[repoHighlight]',
   standalone: true,
 })
-export class HighlightDirective {
+export class RepoDirective {
   constructor(private el: ElementRef) {}
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.highlight('scale(1.05)', 'pointer', '1px solid #FFFF');
+    this.repoHighlight('scale(1.02)', '1px solid #FFFF');
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.highlight('scale(1)', 'default', 'none');
+    this.repoHighlight('scale(1)', 'none');
   }
 
-  private highlight(transform: string, cursor: string, border: string) {
+  private repoHighlight(transform: string, border: string) {
     const element = this.el.nativeElement;
     element.style.transform = transform;
-    element.style.cursor = cursor;
     element.style.border = border;
     element.style.transition = 'transform 0.3s ease-in-out';
   }

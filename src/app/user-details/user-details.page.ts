@@ -5,13 +5,20 @@ import { IonicModule } from '@ionic/angular';
 import { GithubService } from '../services/github.service';
 import { HighlightDirective } from '../directives/highlight.directive';
 import { FormatNumberPipe } from '../pipes/format-number.pipe';
+import { RepoDirective } from '../directives/repo.directive';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.page.html',
   styleUrls: ['./user-details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, HighlightDirective, FormatNumberPipe]
+  imports: [
+    IonicModule,
+    CommonModule,
+    HighlightDirective,
+    FormatNumberPipe,
+    RepoDirective,
+  ],
 })
 export class UserDetailsPage implements OnInit {
   username: string = '';
@@ -31,11 +38,11 @@ export class UserDetailsPage implements OnInit {
   }
 
   private loadUserDetails() {
-    this.githubService.getUser(this.username).subscribe(user => {
+    this.githubService.getUser(this.username).subscribe((user) => {
       this.userDetails = user;
     });
 
-    this.githubService.getRepos(this.username).subscribe(repos => {
+    this.githubService.getRepos(this.username).subscribe((repos) => {
       this.repositories = repos;
     });
   }

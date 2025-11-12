@@ -1,36 +1,58 @@
 <ion-header>
-  <ion-toolbar color="">
-    <ion-title>Buscar GitHub</ion-title>
+  <ion-toolbar>
+    <div part="background">
+      <div
+        part="content"
+        style="display: flex; flex-direction: row; padding-left: 14px"
+      >
+        <img
+          src="../../assets/github-142-svgrepo-com.png"
+          alt=""
+          style="width: 40px"
+        />
+        <ion-title>Buscar GitHub</ion-title>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item> 
+<ion-content class="container">
+  <ion-item class="content">
     <ion-input
       placeholder="Digite o usuário do GitHub"
-      [(ngModel)]="username" 
+      [(ngModel)]="username"
       (keyup.enter)="buscar()"
-      >
+    >
     </ion-input>
-    <ion-button expand="block" (click)="buscar()">Buscar</ion-button>
+    <ion-button (click)="buscar()">Buscar</ion-button>
   </ion-item>
 
   @if (user) {
-    <ion-card appHighlight (click)="verDetalhes(user.login)">
-      <img [src]="user.avatar_url" alt="Avatar">
-      <ion-card-header>
-        <ion-card-title>{{ user.name }}</ion-card-title>
-        <ion-card-subtitle>@{{ user.login }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ user.bio }}</p>
-        <p><strong>Todos Seguidores:</strong> {{ user.followers | formatNumber }}</p>
-        <p><strong>Repositórios públicos:</strong> {{ user.public_repos | formatNumber }}</p>
-      </ion-card-content>
-    </ion-card>
+  <ion-card appHighlight (click)="verDetalhes(user.login)" class="card">
+    <img [src]="user.avatar_url" alt="Avatar" style="border-radius: 10px" />
+    <ion-card-header>
+      <ion-card-title class="titleCard">{{ user.name }}</ion-card-title>
+      <ion-card-subtitle class="text">@{{ user.login }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text">{{ user.bio }}</p>
+      <p>
+        <strong class="text">Seguidores:</strong> {{ user.followers |
+        formatNumber }}
+      </p>
+      <p>
+        <strong class="text">Repositórios públicos:</strong> {{
+        user.public_repos | formatNumber }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  }@else{
+  <ion-card appHighlight class="card">
+    <p>Não foi encontrado nenhum usuário no momento</p>
+  </ion-card>
   }
 
-  <ion-list *ngIf="repos.length">
+  <!-- <ion-list *ngIf="repos.length">
     <ion-list-header>
       <ion-label>Repositórios</ion-label>
     </ion-list-header>
@@ -44,5 +66,5 @@
         Ver
       </ion-button>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
