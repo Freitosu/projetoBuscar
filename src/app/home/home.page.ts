@@ -12,27 +12,29 @@ import { HighlightDirective } from '../directives/highlight.directive';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule, FormatNumberPipe, HighlightDirective]
+  imports: [
+    IonicModule,
+    FormsModule,
+    CommonModule,
+    FormatNumberPipe,
+    HighlightDirective,
+  ],
 })
 export class HomePage {
-
   user: any;
   repos: any[] = [];
   username: string = '';
 
-  constructor(
-    private githubService: GithubService,
-    private router: Router
-  ) {}
+  constructor(private githubService: GithubService, private router: Router) {}
 
   buscar() {
     if (!this.username) return;
 
-    this.githubService.getUser(this.username).subscribe(data => {
+    this.githubService.getUser(this.username).subscribe((data) => {
       this.user = data;
     });
 
-    this.githubService.getRepos(this.username).subscribe(data => {
+    this.githubService.getRepos(this.username).subscribe((data) => {
       this.repos = data;
     });
   }
